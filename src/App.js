@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./styles.css";
 
 export default function App() {
   const [num, setNum] = useState(0);
   const [light, setLight] = useState(true);
-  const plusFive = () => {
+  const plusFive = useCallback(() => {
     console.log("I was called!");
     return num + 5;
-  };
+  }, [num]);
   return (
     <div className={light ? "light" : "dark"}>
       <div>
-        <h1>Without useCallback </h1>
+        <h1>With useCallback</h1>
         <h2>
           Current number: {num},
           <SomeComp someFunc={plusFive} />
