@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./styles.css";
 
 const plusFive = (num) => {
@@ -9,11 +9,11 @@ const plusFive = (num) => {
 export default function App() {
   const [num, setNum] = useState(0);
   const [light, setLight] = useState(true);
-  const numPlusFive = plusFive(num);
+  const numPlusFive = useMemo(() => plusFive(num), [num]);
   return (
     <div className={light ? "light" : "dark"}>
       <div>
-        <h1>Without useMemo</h1>
+        <h1>With useMemo</h1>
         <h2>
           Current number: {num}, Plus five: {numPlusFive}
         </h2>
